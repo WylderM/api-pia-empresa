@@ -20,6 +20,7 @@ jobs:
           echo "SECRET_KEY=super-secret-key" >> .env.test
           echo "ALGORITHM=HS256" >> .env.test
           echo "REDIS_URL=redis://localhost:6379" >> .env.test
+          echo "ACCESS_TOKEN_EXPIRES_MINUTES=30" >> .env.test
 
       - name: Configurar Python
         uses: actions/setup-python@v4
@@ -41,6 +42,7 @@ jobs:
           echo "SECRET_KEY=super-secret-key" >> $GITHUB_ENV
           echo "ALGORITHM=HS256" >> $GITHUB_ENV
           echo "REDIS_URL=redis://localhost:6379" >> $GITHUB_ENV
+          echo "ACCESS_TOKEN_EXPIRES_MINUTES=30" >> $GITHUB_ENV
 
       - name: Rodar testes com SQLite em memória
         run: pytest app/tests
