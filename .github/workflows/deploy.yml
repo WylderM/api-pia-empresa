@@ -58,4 +58,4 @@ jobs:
             source venv/bin/activate
             pip install -r requirements.txt
             alembic upgrade head
-            systemctl restart pia-api.service || uvicorn app.main:app --host 0.0.0.0 --port 8000
+            pm2 restart pia-api || pm2 start pia-api --interpreter=python3 -- uvicorn app.main:app --host 0.0.0.0 --port 8000
