@@ -24,6 +24,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Set PYTEST_RUNNING flag
+        run: echo "PYTEST_RUNNING=1" >> $GITHUB_ENV
+
+      - name: Copy .env.test for test environment
+        run: cp .env.test .env
+
       - name: Rodar testes
         run: |
           pip install pytest httpx pytest-asyncio
