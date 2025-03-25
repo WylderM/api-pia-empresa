@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.env
+.env
+.env.*
+
+# Virtual env
+venv/
+ENV/
+
+# VSCode / PyCharm
+.vscode/
+.idea/
+
+# Byte-compiled / logs
+*.log
+*.sqlite3
+*.db
+
+# Migrations (geradas)
+alembic/versions/*.py
+
+# Pytest
+.pytest_cache/
+htmlcov/
+coverage.xml
+
+# Docker
+*.pid
+*.tgz
+*.bak
+*.tar.gz
+*.swp
+
+# Node (caso tenha)
+node_modules/
+
+# Tests outputs
+tests/__pycache__/
