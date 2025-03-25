@@ -7,7 +7,7 @@ router = APIRouter(tags=["Admin"])
 
 @router.get("/status")
 async def status():
-    return {"status": "ok", "message": "API is running!"}
+    return {"status": "ok", "message": "API is running! 🎉"}
 
 @router.get("/health")
 async def healthcheck(db: AsyncSession = Depends(get_db)):
