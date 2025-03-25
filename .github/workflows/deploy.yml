@@ -27,7 +27,7 @@ jobs:
       - name: Rodar testes
         run: |
           pip install pytest httpx pytest-asyncio
-          pytest tests/
+          pytest app/
 
       - name: Deploy via SSH
         uses: appleboy/ssh-action@master
