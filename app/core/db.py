@@ -1,17 +1,19 @@
-from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+from sqlalchemy.orm import sessionmaker
 from app.core.config import settings
+from app.core.db_base import Base  # 🔧 Agora vai funcionar
 
-# Engine assíncrono
-engine = create_async_engine(settings.database_url, echo=False)
+engine = create_async_engine(
+    settings.database_url, echo=False, future=True
+)
 
-# Session assíncrona
-AsyncSessionLocal = async_sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
+AsyncSessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=engine,
+    class_=AsyncSession
+)
 
-# Base para os modelos
-Base = declarative_base()
-
-# Dependency Injection no FastAPI
 async def get_db():
     async with AsyncSessionLocal() as session:
         yield session

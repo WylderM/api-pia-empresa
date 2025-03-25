@@ -17,3 +17,6 @@ redis>=4.5.0
 pydantic-settings
 psycopg2-binary
 python-multipart
+aiosqlite
+pydantic_settings
+from httpx import AsyncClient
