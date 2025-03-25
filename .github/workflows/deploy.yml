@@ -46,16 +46,17 @@ jobs:
           echo "REDIS_URL=redis://localhost:6379" >> $GITHUB_ENV
           echo "ACCESS_TOKEN_EXPIRES_MINUTES=30" >> $GITHUB_ENV
 
-      - name: Criar arquivos de mock para testes
+      - name: Criar conftest.py para testes
         run: |
           mkdir -p app/tests/mocks
-          echo 'import pytest
-                import pytest_asyncio
-                import asyncio
-                import os
-                from app.core.db import get_engine
-                from app.core.db_base import Base
-                from unittest.mock import patch, MagicMock
+          cat > app/tests/conftest.py << 'EOF'
+          import pytest
+          import pytest_asyncio
+          import asyncio
+          import os
+          from app.core.db import get_engine
+          from app.core.db_base import Base
+          from unittest.mock import patch, MagicMock
 
           # Define uma função make_cache_key corrigida
           def mock_make_cache_key(prefix, **kwargs):
@@ -102,30 +103,33 @@ jobs:
               transaction = await connection.begin()
               yield
               await transaction.rollback()
-              await connection.close()' > app/tests/conftest.py
+              await connection.close()
+          EOF
 
-                - name: Corrigir problema do aioredis com Python 3.11
-                  run: |
-                    echo 'import asyncio
+      - name: Corrigir problema do aioredis com Python 3.11
+        run: |
+          cat > /opt/hostedtoolcache/Python/3.11.11/x64/lib/python3.11/site-packages/aioredis/exceptions.py << 'EOF'
+          import asyncio
           from .errors import RedisError
 
           class TimeoutError(asyncio.TimeoutError, RedisError):
-              pass' > /opt/hostedtoolcache/Python/3.11.11/x64/lib/python3.11/site-packages/aioredis/exceptions.py
+              pass
+          EOF
 
-                - name: Rodar testes com SQLite em memória
-                  run: pytest app/tests
+      - name: Rodar testes com SQLite em memória
+        run: pytest app/tests
 
-                - name: Deploy via SSH
-                  if: success()
-                  uses: appleboy/ssh-action@master
-                  with:
-                    host: ${{ secrets.SSH_HOST }}
-                    username: ${{ secrets.SSH_USER }}
-                    key: ${{ secrets.SSH_KEY }}
-                    script: |
-                      cd /opt/app/api-pia/
-                      git pull origin main
-                      source venv/bin/activate
-                      pip install -r requirements.txt
-                      alembic upgrade head
-                      systemctl restart pia-api.service || uvicorn app.main:app --host 0.0.0.0 --port 8000
+      - name: Deploy via SSH
+        if: success()
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /opt/app/api-pia/
+            git pull origin main
+            source venv/bin/activate
+            pip install -r requirements.txt
+            alembic upgrade head
+            systemctl restart pia-api.service || uvicorn app.main:app --host 0.0.0.0 --port 8000
