@@ -69,7 +69,7 @@ app/
 Execute os testes com:
 
 ```bash
-pytest
+pytest app/test
 ```
 
 ---

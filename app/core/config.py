@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     secret_key: str
     algorithm: str
     redis_url: str
-
+    access_token_expires_minutes: int
     model_config = SettingsConfigDict(env_file=env_file)
 
 settings = Settings()

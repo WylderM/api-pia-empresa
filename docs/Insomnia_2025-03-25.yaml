@@ -1,0 +1,282 @@
+type: collection.insomnia.rest/5.0
+name: API PIA Empresa
+meta:
+  id: wrk_3f55790e56604afea6f547201f946fba
+  created: 1742874448902
+  modified: 1742874448902
+collection:
+  - name: ENDPOINTS
+    meta:
+      id: fld_85cf005d08a54465baafdcbcb05b8ac4
+      created: 1742874448904
+      modified: 1742928689946
+      sortKey: -1742874448905
+    children:
+      - url: "{{ base_url }}/auth/register"
+        name: Register
+        meta:
+          id: req_bcf535204d9d4915a0182ab2101f76aa
+          created: 1742874448905
+          modified: 1742874825921
+          isPrivate: false
+          sortKey: 0
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "email": "admin@test.com",
+              "name": "Admin",
+              "password": "123456"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            id: pair_cc9300f9426d437cb29d24d2a8433af0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ base_url }}/auth/me"
+        name: Me
+        meta:
+          id: req_0a074678dc7645cbbe62354ba6473285
+          created: 1742874448906
+          modified: 1742928620289
+          isPrivate: false
+          sortKey: -2
+        method: GET
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{ token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ base_url }}/auth/token"
+        name: Login
+        meta:
+          id: req_71f0c8a9aab84931aaa5f889553e53ca
+          created: 1742874448906
+          modified: 1742926555167
+          isPrivate: false
+          sortKey: -1
+        method: POST
+        body:
+          mimeType: application/x-www-form-urlencoded
+          params:
+            - id: pair_2f909b5cd6b04851b501f79f0d5c25e2
+              name: username
+              value: admin@test.com
+              disabled: false
+            - id: pair_9353fc61ac25473eaade0d587eb42b4d
+              name: password
+              value: "123456"
+              disabled: false
+        headers:
+          - name: Content-Type
+            value: application/x-www-form-urlencoded
+            id: pair_dc0acd0b7e974ebfad198914fb6f3dcc
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ base_url }}/users/"
+        name: Get Users
+        meta:
+          id: req_3795d16941584dc68526e0d667247246
+          created: 1742874448907
+          modified: 1742874448907
+          isPrivate: false
+          sortKey: -3
+        method: GET
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{ token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ base_url }}/pia/?ano=2022"
+        name: Pia Query
+        meta:
+          id: req_78eb0e140beb49b19bbe4e2b32261f38
+          created: 1742874448907
+          modified: 1742875107514
+          isPrivate: false
+          sortKey: -4
+        method: GET
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{ token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ base_url }}/analytics/top-setores?ano=2021&variavel=Valor da
+          transformação industrial"
+        name: Top Setores
+        meta:
+          id: req_fcf7c44e867749a4b6000d5811f07a9f
+          created: 1742874448907
+          modified: 1742874448907
+          isPrivate: false
+          sortKey: -5
+        method: GET
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{ token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ base_url
+          }}/analytics/evolucao-variavel?cnae_classe=10.11-2&variavel=Valor da
+          transformação industrial"
+        name: Evolução Variável
+        meta:
+          id: req_577981f3e80b425f95cfc9646fa28230
+          created: 1742874448908
+          modified: 1742874448908
+          isPrivate: false
+          sortKey: -6
+        method: GET
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{ token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ base_url }}/health"
+        name: Health
+        meta:
+          id: req_5b7cf2f523b04c68bfdfe7702ebb8052
+          created: 1742874448908
+          modified: 1742874448908
+          isPrivate: false
+          sortKey: -9
+        method: GET
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{ token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ base_url }}/analytics/comparativo-uf?ano=2022&variavel=Pessoal ocupado
+          total"
+        name: Comparativo UF
+        meta:
+          id: req_b9243e505d7b40dd83053f1ff2db59bf
+          created: 1742874448908
+          modified: 1742874448908
+          isPrivate: false
+          sortKey: -7
+        method: GET
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{ token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ base_url }}/status"
+        name: Status
+        meta:
+          id: req_d37cc53db9aa494e9bf028b8e109388f
+          created: 1742874448908
+          modified: 1742874448908
+          isPrivate: false
+          sortKey: -8
+        method: GET
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{ token }}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_651b872b716efb2e90a048845e0e1160f1e4affd
+    created: 1742874452451
+    modified: 1742874452451
+environments:
+  name: LOCAL
+  meta:
+    id: env_fc372fe2bc22408f9a3e542870c8ae6f
+    created: 1742874448903
+    modified: 1742927888221
+    isPrivate: false
+  data:
+    base_url: http://127.0.0.1:8000
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkB0ZXN0LmNvbSIsImV4cCI6MTc0Mjg3Njc4N30.hstRgtG_YHtqf0CkB6SGZTlY3mXSgA6RpSyPu5cIrIU
+  subEnvironments:
+    - name: HOMOLOG
+      meta:
+        id: env_9a048c47e2e64c8ea16eb0bc90fd797d
+        created: 1742926477184
+        modified: 1742926511196
+        isPrivate: false
+        sortKey: 1742926477184
+      data:
+        base_url: https://pia-api-empresa.duckdns.org
+        token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkB0ZXN0LmNvbSIsImV4cCI6MTc0Mjg3Njc4N30.hstRgtG_YHtqf0CkB6SGZTlY3mXSgA6RpSyPu5cIrIU
