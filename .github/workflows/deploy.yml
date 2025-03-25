@@ -32,6 +32,9 @@ jobs:
           pip install -r requirements.txt
           pip install pytest httpx pytest-asyncio
 
+      - name: Iniciar Redis com Docker
+        run: docker run -d -p 6379:6379 --name redis-test redis
+
       - name: Setar variáveis de ambiente
         run: |
           echo "DATABASE_URL=sqlite+aiosqlite:///:memory:" >> $GITHUB_ENV
