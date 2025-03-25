@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, Float
-from app.core.db import Base
+from app.core.db_base import Base
 
 class PIA(Base):
     __tablename__ = "pia_empresa"

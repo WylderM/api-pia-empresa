@@ -11,7 +11,6 @@ app = FastAPI(
     description="Hub de dados do Observatório da Indústria.",
 )
 
-# Rotas públicas e privadas
 app.include_router(auth_router)
 app.include_router(user_router)
 app.include_router(pia_router)

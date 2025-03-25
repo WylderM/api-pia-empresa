@@ -1,6 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
-from app.core.cache import redis
+from app.core.cache import redis_client
 
 async def check_database(db: AsyncSession) -> str:
     try:
@@ -11,6 +11,6 @@ async def check_database(db: AsyncSession) -> str:
 
 async def check_cache() -> str:
     try:
-        return "ok" if await redis.ping() else "unreachable"
+        return "ok" if await redis_client.ping() else "unreachable"
     except Exception:
         return "unreachable"

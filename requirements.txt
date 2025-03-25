@@ -18,3 +18,4 @@ pydantic-settings
 psycopg2-binary
 python-multipart
 aiosqlite
+aioredis
