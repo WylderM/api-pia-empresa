@@ -53,9 +53,9 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd /caminho/do/seu/projeto-na-vps
+            cd /opt/app/api-pia/
             git pull origin main
             source venv/bin/activate
             pip install -r requirements.txt
             alembic upgrade head
-            pm2 restart pia-api || pm2 start pia-api --interpreter=python3 -- uvicorn app.main:app --host 0.0.0.0 --port 8000
+            systemctl restart pia-api.service || uvicorn app.main:app --host 0.0.0.0 --port 8000
