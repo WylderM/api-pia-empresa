@@ -8,7 +8,7 @@ from app.modules.admin.api.admin import router as admin_router
 app = FastAPI(
     title="API - PIA Empresa",
     version="1.0.0",
-    description="Hub de dados do Observatório da Indústria",
+    description="Hub de dados do Observatório da Indústria.",
 )
 
 # Rotas públicas e privadas
